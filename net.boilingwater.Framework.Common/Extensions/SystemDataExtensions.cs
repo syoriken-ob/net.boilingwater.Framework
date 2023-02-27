@@ -32,6 +32,18 @@ namespace net.boilingwater.Framework.Common.Extensions
         }
 
         /// <summary>
+        /// DataRowの指定カラムの値を<see cref="ulong"/>で取得します。
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="columnName"></param>
+        /// <returns><paramref name="row"/>[<paramref name="columnName"/>]</returns>
+        /// <remarks>型変換には<see cref="CastUtil"/>を利用します。</remarks>
+        public static ulong GetAsULong(this DataRow? row, string columnName)
+        {
+            return ColumnExists(row, columnName) ? CastUtil.ToUnsignedLong(row![columnName]) : 0UL;
+        }
+
+        /// <summary>
         /// DataRowの指定カラムの値をDateTime型で取得します。
         /// </summary>
         /// <param name="row"></param>

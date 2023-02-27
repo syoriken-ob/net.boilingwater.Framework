@@ -29,5 +29,30 @@ namespace net.boilingwater.Framework.Common.Extensions
         /// <returns></returns>
         /// <remarks><see cref="string.IsNullOrEmpty(string?)"/>を利用して処理します。</remarks>
         public static bool HasValue(this string? text) => !string.IsNullOrEmpty(text);
+
+        /// <summary>
+        /// 文字列の前後に付与された引用符を削除します。
+        /// </summary>
+        /// <param name="str">文字列</param>
+        /// <returns></returns>
+        public static string? TrimQuotes(this string? str)
+        {
+            if (string.IsNullOrEmpty(str) || string.IsNullOrWhiteSpace(str))
+            {
+                return str;
+            }
+
+            if (str.StartsWith('\"') && str.EndsWith('\"'))
+            {
+                return str.Trim('\"');
+            }
+
+            if (str.StartsWith('\'') && str.EndsWith('\''))
+            {
+                return str.Trim('\'');
+            }
+
+            return str;
+        }
     }
 }
