@@ -22,7 +22,7 @@ namespace net.boilingwater.Framework.Common.Files
         /// <returns></returns>
         public static bool WriteCSVFile<T>(List<T> values, string filePath)
         {
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            var config = new CsvConfiguration(CultureInfo.CurrentCulture)
             {
                 NewLine = Environment.NewLine,
             };

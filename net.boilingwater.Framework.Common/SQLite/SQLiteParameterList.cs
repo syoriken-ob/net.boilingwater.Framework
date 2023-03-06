@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+
+using net.boilingwater.Framework.Common.Extensions;
 
 namespace net.boilingwater.Framework.Common.SQLite
 {
@@ -21,9 +24,27 @@ namespace net.boilingwater.Framework.Common.SQLite
             {
                 ParameterName = name,
                 DbType = type,
-                Value = value
+                Value = NormalizeValue(value)
             };
             Add(parameter);
+        }
+
+        /// <summary>
+        /// IConvertibleをサポートしていない型を手動で変換します。
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private object? NormalizeValue(object? value)
+        {
+            switch (value)
+            {
+                case DateOnly dateOnly:
+                    return dateOnly.ToDateTime();
+                case TimeOnly timeOnly:
+                    return timeOnly.ToDateTime();
+                default:
+                    return value;
+            }
         }
     }
 }

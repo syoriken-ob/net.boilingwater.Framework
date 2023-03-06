@@ -98,6 +98,20 @@ namespace net.boilingwater.Framework.Common.Setting
         public static DateTime AsDateTime(string key) => CastUtil.ToDateTime(Get(key));
 
         /// <summary>
+        /// <see cref="DateOnly"/>型で<paramref name="key"/>に紐づくアプリケーション設定値を取得します
+        /// </summary>
+        /// <param name="key">設定キー</param>
+        /// <returns>アプリケーション設定値を<see cref="net.boilingwater.Framework.Common.Utils.CastUtil.ToDateOnly(object?)"/>で変換して取得</returns>
+        public static DateOnly AsDateOnly(string key) => CastUtil.ToDateOnly(Get(key));
+
+        /// <summary>
+        /// <see cref="DateTime"/>型で<paramref name="key"/>に紐づくアプリケーション設定値を取得します
+        /// </summary>
+        /// <param name="key">設定キー</param>
+        /// <returns>アプリケーション設定値を<see cref="net.boilingwater.Framework.Common.Utils.CastUtil.ToTimeOnly(object?)"/>で変換して取得</returns>
+        public static TimeOnly AsTimeOnly(string key) => CastUtil.ToTimeOnly(Get(key));
+
+        /// <summary>
         /// <paramref name="key"/>に紐づくアプリケーション設定値を<paramref name="splitKey"/>で分割した<see cref="List{String}"/>を取得します
         /// </summary>
         /// <param name="key">設定キー</param>

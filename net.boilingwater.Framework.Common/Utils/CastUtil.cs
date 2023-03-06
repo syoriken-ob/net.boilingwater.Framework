@@ -184,6 +184,56 @@ namespace net.boilingwater.Framework.Common.Utils
         }
 
         /// <summary>
+        /// <paramref name="obj"/>を<see cref="DateOnly"/>型に変換します
+        /// </summary>
+        /// <param name="obj">変換する値</param>
+        /// <returns><see cref="DateOnly"/>型に変換した<paramref name="obj"/></returns>
+        public static DateOnly ToDateOnly(object? obj)
+        {
+            if (obj is DateOnly dateOnly)
+            {
+                return dateOnly;
+            }
+
+            if (DateOnly.TryParse(ToString(obj), out dateOnly))
+            {
+                return dateOnly;
+            }
+
+            if (DateTime.TryParse(ToString(obj), out DateTime dateTime))
+            {
+                return DateOnly.FromDateTime(dateTime);
+            }
+
+            return default;
+        }
+
+        /// <summary>
+        /// <paramref name="obj"/>を<see cref="TimeOnly"/>型に変換します
+        /// </summary>
+        /// <param name="obj">変換する値</param>
+        /// <returns><see cref="TimeOnly"/>型に変換した<paramref name="obj"/></returns>
+        public static TimeOnly ToTimeOnly(object? obj)
+        {
+            if (obj is TimeOnly timeOnly)
+            {
+                return timeOnly;
+            }
+
+            if (TimeOnly.TryParse(ToString(obj), out timeOnly))
+            {
+                return timeOnly;
+            }
+
+            if (DateTime.TryParse(ToString(obj), out DateTime dateTime))
+            {
+                return TimeOnly.FromDateTime(dateTime);
+            }
+
+            return default;
+        }
+
+        /// <summary>
         /// <paramref name="obj"/>を<see cref="string"/>型に変換します
         /// </summary>
         /// <param name="obj">変換する値</param>
